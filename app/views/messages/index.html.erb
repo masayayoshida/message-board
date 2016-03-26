@@ -20,25 +20,36 @@
   </div>
 </div>
 
-<%= form_for(@message) do |f| %>
-  <table style="border-style: none;" border="0">
-    <tbody>
-      <tr>
-        <td>名前</td>
-      　<td><%= f.text_field :name %></td>
-      </tr>
-  　　<tr>
-    　　<td style="padding-top:20px; padding-right: 20px; padding-bottom:20px;">緊急度</td>
-    　　<td style="padding-top:20px; padding-bottom:20px;"><label><%= f.radio_button :test, "1" %>緊急</label>
-    　　<label><%= f.radio_button :test, "2" %>&nbsp;普通</label>
-    　　<label><%= f.radio_button :test, "3" %>&nbsp;独言</label>
-        </td>
-      </tr>
-  　　<tr>
-        <td>内容</td>
-        <td><%= f.text_area :body , cols:50, rows:5 %></td>
-      </tr>
-    </tbody>
-  </table>
-  <div style="margin : 0px 5px 50px 60px"><%= f.submit "書き込む", class: "btn btn-sm btn-primary" %></div>
+<%= form_for(@message, html: {class: "form-horizontal"}) do |f| %>
+  <div class="form-group">
+    <%= f.label "お名前" , :class => "col-sm-3 control-label"%>
+      <div class="col-sm-7">
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-10">
+      <div class="radio_button">
+        <%= f.radio_button :test, 1 %> 緊急
+        <%= f.radio_button :test, 2 %> 普通
+        <%= f.radio_button :test, 3 %> 独言
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "つぶやき" , class: "col-sm-3 control-label" %>
+      <div class="col-sm-7">
+        <%= f.text_area :body, class: "form-control", :rows => 6  %>
+      </div>
+  </div>
+ 
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-10">
+      <%= f.submit "書き込む" ,class: "btn btn-sm btn-primary" %>
+    </div>
+  </div>
+
+
 <% end %>
