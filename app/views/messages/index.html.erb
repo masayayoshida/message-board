@@ -6,16 +6,39 @@
   <div class="panel-body">
     <% @messages.each do |message| %>
       <span class="label label-info"><%= message.name %></span>
+      <% if message.test == 1 then %>
+      <span class="label label-danger">緊急</span>
+      <% elsif message.test == 2 then  %>
+      <span class="label label-success">普通</span>
+      <% else %>
+      <span class="label label-warning">独言</span>
+      <% end %>
+      </span>
       <%= message.body %>
-      <br>
+      <hr />
     <% end %>
   </div>
 </div>
 
 <%= form_for(@message) do |f| %>
-  名前:
-  <%= f.text_field :name %>
-  内容:
-  <%= f.text_field :body %>
-  <%= f.submit class: "btn btn-sm btn-primary" %>
+  <table style="border-style: none;" border="0">
+    <tbody>
+      <tr>
+        <td>名前</td>
+      　<td><%= f.text_field :name %></td>
+      </tr>
+  　　<tr>
+    　　<td style="padding-top:20px; padding-right: 20px; padding-bottom:20px;">緊急度</td>
+    　　<td style="padding-top:20px; padding-bottom:20px;"><label><%= f.radio_button :test, "1" %>緊急</label>
+    　　<label><%= f.radio_button :test, "2" %>&nbsp;普通</label>
+    　　<label><%= f.radio_button :test, "3" %>&nbsp;独言</label>
+        </td>
+      </tr>
+  　　<tr>
+        <td>内容</td>
+        <td><%= f.text_area :body , cols:50, rows:5 %></td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="margin : 5px 5px 50px 60px"><%= f.submit "書き込む", class: "btn btn-sm btn-primary" %></div>
 <% end %>
