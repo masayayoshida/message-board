@@ -6,6 +6,7 @@
   <div class="panel-body">
     <% @messages.each do |message| %>
       <span class="label label-info"><%= message.name %></span>
+      
       <% if message.test == 1 then %>
       <span class="label label-danger">緊急</span>
       <% elsif message.test == 2 then  %>
@@ -14,6 +15,7 @@
       <span class="label label-warning">独言</span>
       <% end %>
       </span>
+      
       <%= message.body %>
       <hr />
     <% end %>
