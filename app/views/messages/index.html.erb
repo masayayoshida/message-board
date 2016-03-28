@@ -5,10 +5,21 @@
     
   <div class="panel-body">
     <% @messages.each do |message| %>
+      
+      <% if message.test == 1 then %>
+      <span class="label label-danger">緊急</span>
+      <% elsif message.test == 2 then  %>
+      <span class="label label-success">普通</span>
+      <% else %>
+      <span class="label label-warning">独言</span>
+      <% end %>
+      
       <span class="label label-info"><%= message.name %></span>
-        <%= message.body %>
-        (<%= link_to "edit" , edit_message_path(message) %>
-         <%= link_to "destroy" , message , method: :delete, data: { confirm: '削除してもよろしいですか？' } %>
+      <span class="label label-info"><%= message.age %>歳</span>
+      <%= message.body %>
+        
+        (<%= link_to "編集" , edit_message_path(message) %>
+         <%= link_to "削除" , message , method: :delete, data: { confirm: '削除してもよろしいですか？' } %>
         )
       <br>
 
